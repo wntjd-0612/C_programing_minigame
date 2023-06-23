@@ -1,19 +1,25 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include<windows.h>
+#include "bomb_avoid.h"
 #include "tetris.h"
-#icnlude "bomb_avoid.h"
+
 int num_bb();
 int rsp();
 int main() {
     int n;
-    printf("하실 게임을 입력하십시오.\n 1, 숫자야구\n 2, 테트리스\n 3, 가위 바위 보\n 4, 똥 피하기\n5, 승부차기 게임\n 6, 두더지 게임\n 7, 홈으로 가기\n8, 게임 끝내기\n");
-    scanf_s("%d", &n);
-    switch (n)
-    {
-    case(1): num_bb(); break;
-    case(2):  tetris();  break;
-    case(3): rsp();  break;
+    while (1) {
+        printf("하실 게임을 입력하십시오.\n 1, 숫자야구\n 2, 테트리스\n 3, 가위 바위 보\n 4, 폭탄 피하기\n 5, 게임 끝내기\n");
+        scanf_s("%d", &n);
+        switch (n)
+        {
+        case(1): num_bb(); Sleep(1000); system("cls");break;
+        case(2):  tetris(); Sleep(1000); system("cls");  break;
+        case(3): rsp(); Sleep(1000); system("cls"); break;
+        case(4): bomb(); Sleep(1000); system("cls"); break;
+        case(5): return 0;
+        }
     }
 
 }
@@ -62,8 +68,15 @@ int num_bb() {
     }
 
     printf("축하합니다! 정답을 맞추셨습니다.\n");
-
-    return 0;
+    int ana;
+    printf("해당 게임을 계속 플레이 할 것인가요?...네(1),아니요(0) :");
+    scanf_s("%d", &ana);
+    if (ana == 1) {
+        num_bb();
+    }
+    else if (ana == 0) {
+        return 0;
+    }
 }
 
 int rsp() {
@@ -85,7 +98,7 @@ int rsp() {
         break;
     default:
         printf("잘못된 선택\n");
-        return 1;
+        rsp();
     }
 
     printf("컴퓨터: ");
@@ -115,6 +128,13 @@ int rsp() {
     else {
         printf("컴퓨터가 이겼습니다!\n");
     }
-
-    return 0;
+    int ana;
+    printf("해당 게임을 계속 플레이 할 것인가요?...네(1),아니요(0) :");
+    scanf_s("%d", &ana);
+    if (ana == 1) {
+        rsp();
+    }
+    else if(ana==0){
+        return 1;
+    }
 }
