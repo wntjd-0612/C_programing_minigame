@@ -1,4 +1,4 @@
-﻿#define _CRT_SECURE_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
@@ -43,14 +43,7 @@ void gotoxy(int x, int y)
 //시작화면출력
 void StartingScreen()
 {
-    gotoxy(0, 0);
-    puts("┌──────────────────────────────────────────────────────────────────────────────┐");
-    puts("│  ■■■■■   ■■■■■   ■■■■■  ■■■■       ■■■    ■■■■■   │");
-    puts("│      ■       ■               ■      ■      ■       ■      ■           │");
-    puts("│      ■       ■■■■■       ■      ■ ■■■        ■      ■■■■■   │");
-    puts("│      ■       ■               ■      ■   ■          ■              ■   │");
-    puts("│      ■       ■■■■■       ■      ■      ■     ■■■    ■■■■■   │");
-    puts("└──────────────────────────────────────────────────────────────────────────────┘");
+
     while (1)
     {
         gotoxy(30, 20);
@@ -72,25 +65,25 @@ void GameScreen()
 {
     gotoxy(0, 0);
     puts("┌────────────────────────────────────────────────────────────────────────────────┐");
-    puts("│           ┌───────────────────────┐       ┌  NEXT BLOCK ─────────┐             │");
+    puts("│           ┌───────────┐        ┌  NEXT BLOCK  ────┐             │");
     puts("│           │                       │       │                      │             │");
     puts("│           │                       │       │                      │             │");
     puts("│           │                       │       │                      │             │");
     puts("│           │                       │       │                      │             │");
     puts("│           │                       │       │                      │             │");
-    puts("│           │                       │       └──────────────────────┘             │");
-    puts("│           │                       │                                            │");
-    puts("│           │                       │       ┌  SCORE ──────────────┐             │");
-    puts("│           │                       │       │                      │             │");
-    puts("│           │                       │       └──────────────────────┘             │");
-    puts("│           │                       │                                            │");
-    puts("│           │                       │                                            │");
-    puts("│           │                       │       ┌  LEVEL  ─────────────┐             │");
-    puts("│           │                       │       │                      │             │");
-    puts("│           │                       │       └──────────────────────┘             │");
-    puts("│           │                       │                                            │");
-    puts("│           │                       │                                            │");
-    puts("│           │                       │       ┌  CONTROLS ───────────┐             │");
+    puts("│           │                       │       └───────────┘             │");
+    puts("│           │                       │                                              │");
+    puts("│           │                       │                                              │");
+    puts("│           │                       │                                              │");
+    puts("│           │                       │                                              │");
+    puts("│           │                       │                                              │");
+    puts("│           │                       │                                              │");
+    puts("│           │                       │                                              │");
+    puts("│           │                       │                                              │");
+    puts("│           │                       │                                              │");
+    puts("│           │                       │                                              │");
+    puts("│           │                       │                                              │");
+    puts("│           │                       │       ┌  CONTROLS  ─────┐             │");
     puts("│           │                       │       │ 블럭이동:←→↓      │             │");
     puts("│           │                       │       │ 회전 : ↑            │             │");
     puts("│           │                       │       │ 드랍 : SPACEBAR      │             │");
@@ -842,6 +835,15 @@ int tetris()
     GameOver(score, level);
     FreeBlockMemory(blockHead);
     FreeBlockMemory(nextBlockHead);
-    return 0;
+    system("cls");
+    int ana;
+    printf("해당 게임을 계속 플레이 할 것인가요?...네(1),아니요(0) :");
+    scanf("%d", &ana);
+    if (ana == 1) {
+        tetris();
+    }
+    else if (ana == 0) {
+        return 0;
+    }
 }
 
