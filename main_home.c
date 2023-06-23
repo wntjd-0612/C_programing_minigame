@@ -2,11 +2,12 @@
 #include <stdlib.h>
 #include <time.h>
 #include "tetris.h"
+#icnlude "bomb_avoid.h"
 int num_bb();
 int rsp();
 int main() {
     int n;
-    printf("ÇÏ½Ç °ÔÀÓÀ» ÀÔ·ÂÇÏ½Ê½Ã¿À.\n 1, ¼ıÀÚ¾ß±¸\n 2, Å×Æ®¸®½º\n 3, °¡À§ ¹ÙÀ§ º¸\n 4, ¶Ë ÇÇÇÏ±â\n5, ½ÂºÎÂ÷±â °ÔÀÓ\n 6, µÎ´õÁö °ÔÀÓ\n 7, È¨À¸·Î °¡±â\n8, °ÔÀÓ ³¡³»±â\n");
+    printf("í•˜ì‹¤ ê²Œì„ì„ ì…ë ¥í•˜ì‹­ì‹œì˜¤.\n 1, ìˆ«ìì•¼êµ¬\n 2, í…ŒíŠ¸ë¦¬ìŠ¤\n 3, ê°€ìœ„ ë°”ìœ„ ë³´\n 4, ë˜¥ í”¼í•˜ê¸°\n5, ìŠ¹ë¶€ì°¨ê¸° ê²Œì„\n 6, ë‘ë”ì§€ ê²Œì„\n 7, í™ˆìœ¼ë¡œ ê°€ê¸°\n8, ê²Œì„ ëë‚´ê¸°\n");
     scanf_s("%d", &n);
     switch (n)
     {
@@ -31,12 +32,12 @@ int num_bb() {
         answer[2] = rand() % 10;
     } while (answer[0] == answer[2] || answer[1] == answer[2]);
 
-    printf("°ÔÀÓÀ» ½ÃÀÛÇÕ´Ï´Ù!\n");
+    printf("ê²Œì„ì„ ì‹œì‘í•©ë‹ˆë‹¤!\n");
 
 
     while (strike != 3) {
 
-        printf("3ÀÚ¸® ¼ıÀÚ¸¦ ÀÔ·ÂÇÏ¼¼¿ä (Áßº¹ ¾øÀÌ): ");
+        printf("3ìë¦¬ ìˆ«ìë¥¼ ì…ë ¥í•˜ì„¸ìš” (ì¤‘ë³µ ì—†ì´): ");
         scanf_s("%1d%1d%1d", &guess[0], &guess[1], &guess[2]);
         strike = 0;
         ball = 0;
@@ -57,10 +58,10 @@ int num_bb() {
         }
 
 
-        printf("°á°ú: %d ½ºÆ®¶óÀÌÅ©, %d º¼\n\n", strike, ball);
+        printf("ê²°ê³¼: %d ìŠ¤íŠ¸ë¼ì´í¬, %d ë³¼\n\n", strike, ball);
     }
 
-    printf("ÃàÇÏÇÕ´Ï´Ù! Á¤´äÀ» ¸ÂÃß¼Ì½À´Ï´Ù.\n");
+    printf("ì¶•í•˜í•©ë‹ˆë‹¤! ì •ë‹µì„ ë§ì¶”ì…¨ìŠµë‹ˆë‹¤.\n");
 
     return 0;
 }
@@ -68,51 +69,51 @@ int num_bb() {
 int rsp() {
     int userChoice, computerChoice;
 
-    printf("°¡À§(1), ¹ÙÀ§(2), º¸(3) Áß ÇÏ³ª¸¦ ¼±ÅÃÇÏ¼¼¿ä: ");
+    printf("ê°€ìœ„(1), ë°”ìœ„(2), ë³´(3) ì¤‘ í•˜ë‚˜ë¥¼ ì„ íƒí•˜ì„¸ìš”: ");
     scanf_s("%d", &userChoice);
     computerChoice = rand() % 3 + 1;
-    printf("»ç¿ëÀÚ: ");
+    printf("ì‚¬ìš©ì: ");
     switch (userChoice) {
     case 1:
-        printf("°¡À§\n");
+        printf("ê°€ìœ„\n");
         break;
     case 2:
-        printf("¹ÙÀ§\n");
+        printf("ë°”ìœ„\n");
         break;
     case 3:
-        printf("º¸\n");
+        printf("ë³´\n");
         break;
     default:
-        printf("Àß¸øµÈ ¼±ÅÃ\n");
+        printf("ì˜ëª»ëœ ì„ íƒ\n");
         return 1;
     }
 
-    printf("ÄÄÇ»ÅÍ: ");
+    printf("ì»´í“¨í„°: ");
     switch (computerChoice) {
     case 1:
-        printf("°¡À§\n");
+        printf("ê°€ìœ„\n");
         break;
     case 2:
-        printf("¹ÙÀ§\n");
+        printf("ë°”ìœ„\n");
         break;
     case 3:
-        printf("º¸\n");
+        printf("ë³´\n");
         break;
     }
 
 
     if (userChoice == computerChoice) {
-        printf("ºñ°å½À´Ï´Ù!\n");
+        printf("ë¹„ê²¼ìŠµë‹ˆë‹¤!\n");
     }
     else if (
         (userChoice == 1 && computerChoice == 3) ||
         (userChoice == 2 && computerChoice == 1) ||
         (userChoice == 3 && computerChoice == 2)
         ) {
-        printf("»ç¿ëÀÚ°¡ ÀÌ°å½À´Ï´Ù!\n");
+        printf("ì‚¬ìš©ìê°€ ì´ê²¼ìŠµë‹ˆë‹¤!\n");
     }
     else {
-        printf("ÄÄÇ»ÅÍ°¡ ÀÌ°å½À´Ï´Ù!\n");
+        printf("ì»´í“¨í„°ê°€ ì´ê²¼ìŠµë‹ˆë‹¤!\n");
     }
 
     return 0;
