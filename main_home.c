@@ -72,6 +72,7 @@ int num_bb() {
     printf("해당 게임을 계속 플레이 할 것인가요?...네(1),아니요(0) :");
     scanf_s("%d", &ana);
     if (ana == 1) {
+        system("cls");
         num_bb();
     }
     else if (ana == 0) {
